@@ -28,19 +28,12 @@ export class LancamentoController {
         return lancamentoExiste;
     }
 
-    async recuperarTodos(limite?: number) {
-        let opcoes = {};
-
-        if (limite && limite > 0) {
-            opcoes = {
-                take: limite,
-                order: {
-                    data: "DESC"
-                }
-            };
-        }
-
-        const lancamentos = await this.entityManager.find(Lancamento, opcoes);
+    async recuperarTodos() {
+        const lancamentos = await this.entityManager.find(Lancamento, {
+            order: {
+                data: "DESC"
+            }
+        });
         return lancamentos;
     }
 }

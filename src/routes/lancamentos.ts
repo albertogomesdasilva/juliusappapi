@@ -20,11 +20,9 @@ routerLancamento.post('/', async (req, res) => {
     }
 });
 
-routerLancamento.get('/:quantidade', async (req, res) => {
-    let limite = parseInt(req.params.quantidade);
+routerLancamento.get('/', async (req, res) => {
     const lancamentoCtrl = new LancamentoController();
-    limite = isNaN(limite) ? 0 : limite;
-    const lancamentos = await lancamentoCtrl.recuperarTodos(limite);
+    const lancamentos = await lancamentoCtrl.recuperarTodos();
     res.json(lancamentos);
 });
 
